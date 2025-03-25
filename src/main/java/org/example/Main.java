@@ -6,6 +6,15 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        Fracao f1 = new Fracao(1, 2);
+        Fracao f2 = new Fracao(3, 4);
+
+        System.out.println("-----------Fração Simples----------");
+        System.out.println("Soma: " + f1.soma(f2));
+        System.out.println("Subtração: " + f1.subtracao(f2));
+        System.out.println("Multiplicação: " + f1.multiplicacao(f2));
+        System.out.println("Divisão: " + f1.divisao(f2));
+
         // Criando objetos iniciais
         Pessoa pessoa = new Pessoa("Carlos", 30, "123.456.789-00");
         Flor flor = new Flor("Rosa", "Vermelha", 0.5f);
@@ -49,12 +58,11 @@ public class Main {
                     break;
                 case 7:
                     System.out.println("Saindo... Até mais!");
+                    scanner.close();
                     break;
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
         } while (opcao != 9);
-
-        scanner.close();
     }
 }
