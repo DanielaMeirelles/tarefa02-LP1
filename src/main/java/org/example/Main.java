@@ -15,9 +15,32 @@ public class Main {
         System.out.println("Multiplicação: " + f1.multiplicacao(f2));
         System.out.println("Divisão: " + f1.divisao(f2));
 
-        // Criando objetos iniciais
-        Pessoa pessoa = new Pessoa("Carlos", 30, "123.456.789-00");
-        Flor flor = new Flor("Rosa", "Vermelha", 0.5f);
+        // Entrada de dados para Pessoa
+        System.out.println("===== CADASTRO DE PESSOA =====");
+        System.out.print("Digite o nome da pessoa: ");
+        String nomePessoa = scanner.nextLine();
+        
+        System.out.print("Digite a idade da pessoa: ");
+        int idadePessoa = scanner.nextInt();
+        scanner.nextLine(); // Limpa o buffer
+
+        System.out.print("Digite o CPF da pessoa (XXX.XXX.XXX-XX): ");
+        String cpfPessoa = scanner.nextLine();
+
+        Pessoa pessoa = new Pessoa(nomePessoa, idadePessoa, cpfPessoa);
+
+        // Entrada de dados para Flor
+        System.out.println("\n===== CADASTRO DE FLOR =====");
+        System.out.print("Digite a espécie da flor: ");
+        String especieFlor = scanner.nextLine();
+
+        System.out.print("Digite a cor da flor: ");
+        String corFlor = scanner.nextLine();
+
+        System.out.print("Digite a altura inicial da flor (em centímetros): ");
+        double alturaFlor = scanner.nextDouble();
+
+        Flor flor = new Flor(especieFlor, corFlor, alturaFlor);
 
         int opcao;
         do {
