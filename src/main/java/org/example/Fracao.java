@@ -1,59 +1,52 @@
 package org.example;
 
 public class Fracao {
-    private int numerador;
-    private int denominador;
+
+    int numerador;
+    int denominador;
 
     public Fracao(int numerador, int denominador) {
-        if (denominador == 0) {
-            throw new IllegalArgumentException("O denominador não pode ser zero.");
-        }
-        int gcd = mdc(numerador, denominador);
-        this.numerador = numerador / gcd;
-        this.denominador = denominador / gcd;
-        ajustarSinal();
+        this.numerador = numerador;
+        this.denominador = denominador;
+        simplificar();
     }
 
-    private void ajustarSinal() {
-        if (this.denominador < 0) {
-            this.numerador = -this.numerador;
-            this.denominador = -this.denominador;
-        }
+    public Fracao somar(Fracao outra) {
+        int num = this.numerador * outra.denominador + outra.numerador * this.denominador;
+        int den = this.denominador * outra.denominador;
+        return new Fracao(num, den);
     }
 
-    private int mdc(int a, int b) {
-        return b == 0 ? Math.abs(a) : mdc(b, a % b);
+    public Fracao subtrair(Fracao outra) {
+        int num = this.numerador * outra.denominador - outra.numerador * this.denominador;
+        int den = this.denominador * outra.denominador;
+        return new Fracao(num, den);
     }
 
-    public Fracao soma(Fracao outra) {
-        int novoNumerador = this.numerador * outra.denominador + outra.numerador * this.denominador;
-        int novoDenominador = this.denominador * outra.denominador;
-        return new Fracao(novoNumerador, novoDenominador);
+    public Fracao multiplicar(Fracao outra) {
+        int num = this.numerador * outra.numerador;
+        int den = this.denominador * outra.denominador;
+        return new Fracao(num, den);
     }
 
-    public Fracao subtracao(Fracao outra) {
-        int novoNumerador = this.numerador * outra.denominador - outra.numerador * this.denominador;
-        int novoDenominador = this.denominador * outra.denominador;
-        return new Fracao(novoNumerador, novoDenominador);
+    public Fracao dividir(Fracao outra) {
+        int num = this.numerador * outra.denominador;
+        int den = this.denominador * outra.numerador;
+        return new Fracao(num, den);
     }
 
-    public Fracao multiplicacao(Fracao outra) {
-        int novoNumerador = this.numerador * outra.numerador;
-        int novoDenominador = this.denominador * outra.denominador;
-        return new Fracao(novoNumerador, novoDenominador);
+    private void simplificar() {
+        int mdc = calcularMDC(numerador, denominador);
+        numerador /= mdc;
+        denominador /= mdc;
     }
 
-    public Fracao divisao(Fracao outra) {
-        if (outra.numerador == 0) {
-            throw new ArithmeticException("Não é possível dividir por zero.");
-        }
-        int novoNumerador = this.numerador * outra.denominador;
-        int novoDenominador = this.denominador * outra.numerador;
-        return new Fracao(novoNumerador, novoDenominador);
+    private int calcularMDC(int a, int b) {
+        if (b == 0) return a;
+        return calcularMDC(b, a % b);
     }
 
-    @Override
-    public String toString() {
-        return numerador + "/" + denominador;
+    public void exibir() {
+        System.out.println(numerador + "/" + denominador);
     }
 }
